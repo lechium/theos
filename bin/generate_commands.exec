@@ -1,0 +1,22 @@
+#!/bin/bash
+PWD=`pwd`
+FILES=$1/*.jsont
+echo $FILES
+FILE_COUNT=`echo $FILES | wc -w | tr -d ' '`
+echo $FILE_COUNT
+i=1
+OUTPUT=compile_commands.json
+echo "[" > $OUTPUT
+for f in $FILES
+do
+  	echo "Processing $f file at index $i..."
+	contents=`cat $f`
+	echo $contents >> $OUTPUT
+	if [ $i != $FILE_COUNT ]; then
+		echo "," >> $OUTPUT 
+	fi
+	i=$((i + 1))
+done
+echo "]" >> $OUTPUT
+
+#( ff="" ; for f in * $FILES ; do [ -n "$ff" ] && echo $(${f:+false} && echo $ff alternate params here || echo normal params $ff ) ; ff=$f ; done )

@@ -1,6 +1,8 @@
 NULLSTRING :=
 
 ECHO_PIPEFAIL := set -o pipefail;
+ECHO_COMMAND = @echo "{\"command\":\"
+ECHO_END_COMMAND = \", \"directory\":\"$(CURDIR)\",\"file\":\"$<\"}" > $<.jsont
 
 _THEOS_VERBOSE := $(call __theos_bool,$(or $(messages),$(MESSAGES)))
 
